@@ -1,15 +1,12 @@
 import sys
-import importlib
 
 from PySide2 import QtWidgets
 
-#from . import view as view
-#from . import model as model
-import view
-import model
+import view as view
+import model as model
 
-importlib.reload(view)
-importlib.reload(model)
+reload(view)
+reload(model)
 
 
 class Connect(object):
@@ -27,6 +24,13 @@ class Connect(object):
         self.view.combo.currentIndexChanged[str].connect(lambda option: self.view.statusBar.showMessage('{OPTION}'.format(OPTION=option), 500))
 
         self.view.radioButton2.clicked.connect(lambda: self.model.radio_button2())
+        self.view.textGrabberButton.clicked.connect(lambda: self._getTextAndPassItAlong())
+
+    def _getTextAndPassItAlong(self):
+        currentText = self.view.scrollText.toPlainText()
+        self.view.statusBar.showMessage(currentText, 5000)
+        returnValue = self.model.userTypedThis(currentText, extra)
+        self.view.scrollText.Text()
 
 
 def main():
