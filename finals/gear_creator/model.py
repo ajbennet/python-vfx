@@ -12,3 +12,9 @@ class Location(Enum):
     RIGHT = 2
     BOTTOM = 3
     LEFT = 4
+
+
+class GearProperty:
+    def __init__(self, rotation='frame', size=Size.MEDIUM):
+        self.rotation = rotation
+        self.size = size

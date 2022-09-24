@@ -1,6 +1,11 @@
 import os
+import importlib
 from functools import partial
 from PySide2 import QtCore, QtWidgets, QtUiTools
+from finals.gear_creator import gears_controller
+
+importlib.reload(gears_controller)
+
 
 
 class UI(object):
@@ -8,11 +13,12 @@ class UI(object):
         super(UI, self).__init__()
         ui_file = QtCore.QFile(ui_file)
         ui_file.open(QtCore.QFile.ReadOnly)
-
         loader = QtUiTools.QUiLoader()
         self.window = loader.load(ui_file)
         ui_file.close()
         self.__init__widgets()
+        # initialize the controller
+        self.controller = gears_controller.Controller()
 
     def __init__widgets(self):
         self.gearRadius = self.window.findChild(QtWidgets.QLineEdit, 'gearRadius')
@@ -21,6 +27,7 @@ class UI(object):
 
     def add_button_label(self):
         print(self.gearRadius.text())
+        self.controller.addGear()
 
 
 def main():
