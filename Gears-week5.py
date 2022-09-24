@@ -1,2 +1,4 @@
 import week5.tweener.model as model
-model.core(10)
+import week5.tweener.view as view
+model.core(25)
+ui=view.main()
