@@ -20,13 +20,13 @@ class Controller(object):
     gearTranslateXList = {}
     gearRadiusList = {}
 
-    def addGear(self, size=model.Size.Medium, location=model.Location.Right):
+    def addGear(self, size=model.Size.Medium, location=model.Location.Right, height=1):
         gearRadius = size.value
         translateZValue = 0
         translateXValue = 0
         numberOfTeeth = 8 * gearRadius
         previousXValue, previousZValue, previousRotation, previousRadius = self.getSelectedGear()
-        gear = cmds.polyGear(s=numberOfTeeth, radius=gearRadius)
+        gear = cmds.polyGear(s=numberOfTeeth, radius=gearRadius, height=height)
         Controller.gearRadiusList[gear[0]] = gearRadius
         changeX = True
         changeZ = True
@@ -52,6 +52,7 @@ class Controller(object):
                 translateZValue = previousZValue
         print(previousXValue, '-', previousZValue, '-', translateXValue, '-', translateZValue)
 
+        #cmds.setAttr('{GEAR}.scaleY'.format(GEAR=gear[0]), height)
         cmds.setAttr('{GEAR}.translateZ'.format(GEAR=gear[0]), translateZValue)
         Controller.gearTranslateZList[gear[0]] = translateZValue
         cmds.setAttr('{GEAR}.translateX'.format(GEAR=gear[0]), translateXValue)

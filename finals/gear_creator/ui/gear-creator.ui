@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLineEdit" name="gearRadius">
+  <widget class="QLineEdit" name="gearHeight">
    <property name="geometry">
     <rect>
      <x>130</x>

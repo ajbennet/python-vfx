@@ -28,13 +28,18 @@ class UI(object):
         self.locationCb.addItems(["Top","Right", "Bottom", "Left"])
         self.sizeCb = self.window.findChild(QtWidgets.QComboBox, 'size')
         self.sizeCb.addItems(["Small", "Medium", "Large"])
-        self.gearRadius = self.window.findChild(QtWidgets.QLineEdit, 'gearRadius')
+        self.gearHeight = self.window.findChild(QtWidgets.QLineEdit, 'gearHeight')
+        self.gearHeight.setPlaceholderText('1.0')
         self.button = self.window.findChild(QtWidgets.QPushButton, 'addButton')
         self.button.pressed.connect(partial(self.add_button_label))
 
     def add_button_label(self):
-        print(self.gearRadius.text())
-        self.controller.addGear(location = model.Location[self.locationCb.currentText()], size= model.Size[self.sizeCb.currentText()])
+        height = 1
+        try:
+            height = int(float(self.gearHeight.text()))
+        except ValueError:
+            height = 1
+        self.controller.addGear(location = model.Location[self.locationCb.currentText()], size= model.Size[self.sizeCb.currentText()], height= height)
 
 
 def main():
