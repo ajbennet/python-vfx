@@ -72,7 +72,7 @@
     <string>Location</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox_2">
+  <widget class="QComboBox" name="size">
    <property name="geometry">
     <rect>
      <x>130</x>
