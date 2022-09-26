@@ -1,4 +1,9 @@
-import week5.tweener.model as model
-import week5.tweener.view as view
-model.core(25)
-ui=view.main()
+import maya.cmds as cmds
+import week5.gear_creator.view as view
+
+import importlib
+importlib.reload(view)
+
+
+ui = view.main()
+ui.show()
